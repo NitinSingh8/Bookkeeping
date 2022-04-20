@@ -1,0 +1,55 @@
+{% extends 'record/base.html' %}
+{% block content1 %}
+<div class="container my-5 ">
+        <h3>Home Page</h3>
+        <div class="col-l-10 ">
+            <div class="h-100 p-5 text-white bg-primary-self border-self rounded-3">
+                <h4>Login Here...</h4>
+            {% if messages %}
+
+                        {% for message in messages %}
+                            <div {% if message.tags %}
+                                class="alert alert-{{ message.tags }} alert-dismissible fade show mb-4" {% endif %}
+                                role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                            </div>
+                            {#                        <p {% if message.tags %} class ="alert alert-{{ message.tags }} mb-4" {% endif %}>{{ message }}</p>#}
+                        {% endfor %}
+                    {% endif %}
+                <br><br>
+                <div class="row">
+
+
+                    <div class="col-sm-4">
+                    </div>
+                    <div class="col-sm-8">
+                        {% if form.non_field_errors %}
+                            {% for error in form.non_field_errors %}
+                                <p class="alert alert-danger small">{{ error }}</p>
+                            {% endfor %}
+                        {% endif %}
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+                            {% for field in form %}
+                                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                                <input type="{{ field.widget_type }}" class="form-control w-50" name="{{ field.name }}"
+                                       autofocus autocapitalize="none" autocomplete="{{ field.name }}" maxlength="150"
+                                       required id="{{ field.id_for_label }}">
+                                <small class="text-warning">{{ field.errors|striptags }}</small>
+                                <br><br>
+                            {% endfor %}
+
+
+                            <input type="submit" value="Login" class="btn btn-danger">
+                            <br>
+                            Not Having an account? <a class="aentry" href="{% url 'signup' %}">SignUp</a>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

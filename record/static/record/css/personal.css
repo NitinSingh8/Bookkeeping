@@ -1,0 +1,19 @@
+.color-white{
+    color: white;
+}
+.color-gold{
+    color: gold;
+}
+
+.w-10 {
+    width: 14%;
+}
+.changefont{
+    font-style: inherit;
+    font-family: Bahnschrift;
+
+    text-decoration: underline;
+    font-size: xxx-large;
+}
+
+

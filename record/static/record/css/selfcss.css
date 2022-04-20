@@ -1,0 +1,102 @@
+.alink{
+    text-decoration: none;
+    color: white;
+}
+.dja{
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial;
+    font-size: 32px;
+    font-style: unset;
+}
+
+.m-down-35{
+    margin: 30px;
+}
+
+.text-35{
+    font-size: 30px;
+}
+
+.m-up-3 {
+    margin-top: 10px;
+}
+
+.color-gold{
+    color: gold;
+
+}
+.color-black{
+    color: black;
+
+}
+body {
+    background-color: #212529;
+    color: white;
+}
+.border_self {
+    border: 2px solid white;
+}
+.bg-primary-self{
+    background-color: #2775ea;
+}
+
+.border-self{
+    border: 4px solid white;
+}
+.border-self2{
+    border: 1px solid white;
+}
+
+.h-down-25 {
+    height: 75%;
+}
+
+.t-40 {
+    font-size: 44px;
+}
+.btn-self{
+    background-color: rgba(5, 60, 105, 0.6);
+    color: white;
+}
+
+.m-up-90 {
+    margin-top: 30%;
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-bottom: 0%;
+}
+.border-radius22 {
+    border-radius: 22px;
+}
+
+.aentry {
+    color: red
+}
+
+.btn-nitin::before, .btn-nitin::after {
+    content: "";
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.btn-nitin::after {
+    background-color: #292929;
+}
+.btn-nitin::before{
+    background-image: linear-gradient(to bottom right, #aeffb9 0%, #a091ff 100%);
+    transition: transform 200ms;
+}
+
+.btn-nitin:hover::before , .btn-nitin:focus::after{
+    transform:scale(1.1);
+}
+
+.t-32 {
+    font-size: 40px;
+}
+

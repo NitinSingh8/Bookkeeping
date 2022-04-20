@@ -1,0 +1,48 @@
+{% extends 'record/base.html' %}
+
+{% block content0 %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'record/css/personal.css' %}">
+
+{% endblock %}
+{% block content1 %}
+    <div class="container my-5">
+        {% if messages %}
+
+            {% for message in messages %}
+                <div {% if message.tags %}
+                    class="alert alert-{{ message.tags }} alert-dismissible fade show mb-4" {% endif %}
+                    role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                            aria-label="Close"></button>
+                </div>
+             {% endfor %}
+        {% endif %}
+        <div class="row bg-dark color-white">
+            <div class="row mx-5 my-5 color-gold">
+                <h2>Set The Amount </h2>
+            </div>
+            <div class="col-sm-2 my-5"></div>
+            <div class="col-sm-8 my-5">
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    <label for="id_total_amount">Total amount:</label>
+                    <input type="number" step="amy" name="total_amount" class="form-control w-50" value=0.0 max=10000000 required
+                           id="id_total_amount">
+                    <br>
+
+                    <label for="id_total_consumed">Total consumed(You can't change since you setting):</label>
+                    <input type="number" step="any" name="total_consumed" class="form-control w-50" value=0.0 max=10000000 required
+                           id="id_total_consumed">
+                    <br>
+
+                    <br><br>
+                    <input type="submit" value="Set" class="w-10 btn-success btn">
+                </form>
+            </div>
+            <div class="col-sm-2 my-5"></div>
+        </div>
+    </div>
+{% endblock %}

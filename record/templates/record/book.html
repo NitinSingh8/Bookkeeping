@@ -1,0 +1,57 @@
+
+
+{% extends 'record/base.html' %}
+
+
+
+{% block content0 %}
+    {% load static %}
+    <style>
+        body {
+            background-image: url("{% static 'record/images/bg2.jpg' %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+{% endblock %}
+
+    <main class="px-3">
+        <h1>Cover your page.</h1>
+        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the
+            text, and add your own fullscreen background photo to make it your own.</p>
+        <p class="lead">
+            <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
+        </p>
+    </main>
+
+    <footer class="mt-auto text-white-50">
+        <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a
+                href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
+    </footer>
+</div>
+
+{% block content1 %}
+
+
+{#    <div class="dja">#}
+        {#<a class="alink link-nitin" href="{% url 'home' %}">Go to Bookkeeping</a>#}
+{#        <div class="row ">#}
+{#            <a class="btn text-capitalize t-32 btn-success" href="{% url 'home' %}">Go To Bookkeeping</a>#}
+{#        </div>#}
+        {#    <button class="btn btn-success">Nitin</button>#}
+
+
+
+{#    </div>#}
+    <div class="row row-cols-1 row-cols-md-6 text-center  m-up-90">
+             <div class="col m-0"></div>
+             <div class="col m-0"></div>
+{#             <div class="col m-0"></div>#}
+             <div class="col  t-40 "><a href="{% url 'home' %}" class="btn t-40 my-2 text-white border-radius22 border-self2 btn-primary btn-outline-dark " > Go To Project</a></div>
+             <div class="col  t-40"><a href="{% url 'about' %}" class="btn t-40 my-2 text-white  border-radius22 border-self2 btn-primary btn-outline-dark  "> Know more</a></div>
+             <div class="col m-0"></div>
+{#             <div class="col m-0"></div>#}
+             <div class="col m-0"></div>
+         </div>
+{% endblock %}
