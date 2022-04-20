@@ -65,12 +65,33 @@
                  <h2 >Add New Record</h2> <br>
                 <form action="" method="post" novalidate >
                     {% csrf_token %}
-                    {% for field in form %}
-                        {{ field.label_tag }}
-                        {{ field }}
-                    <small class="text-warning">{{ field.errors|striptags }}</small>
+                    <label for="id_time">Time:</label>
+                        <input type="text" name="time"  value= " {{ tim }}" class="form-control w-50" required id="id_time">
+
+                    <small class="text-warning"></small>
                         <br> <br>
-                    {% endfor %}
+
+
+                        <label for="id_shop">Location/shop:</label>
+                        <input type="text" name="shop" class="form-control w-50" required id="id_shop">
+
+                    <small class="text-warning"></small>
+                        <br> <br>
+
+
+                        <label for="id_item">Description/item:</label>
+                        <input type="text" name="item" class="form-control w-50" required id="id_item">
+
+                    <small class="text-warning"></small>
+                        <br> <br>
+
+
+                        <label for="id_price">Price:</label>
+                        <input type="number" name="price" class="form-control w-50" step="any" required id="id_price">
+
+                    <small class="text-warning"></small>
+                        <br> <br>
+
                     <input type="submit" value="Add" class="btn btn-success">
                 </form>
             </div>

@@ -5,6 +5,7 @@ from django.shortcuts import HttpResponseRedirect, render
 from django.contrib import messages
 from .models import OurRecord
 from . import selfmadeform as smf
+from datetime import datetime
 
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
@@ -48,7 +49,8 @@ def home(request):
 
                     smf.update_amount(str(request.user),ta,tc)
                     messages.success(request,"Added an record successfully")
-                    return render(request, 'record/home.html', {'form': fm, 'dt': data ,'total_amount': ta,'amount_consumed':tc,'amount_left':tl})
+                    tm = datetime.now()
+                    return render(request, 'record/home.html', { 'tim':tm,  'form': fm, 'dt': data ,'total_amount': ta,'amount_consumed':tc,'amount_left':tl})
             else:
                 print("not valid data")
                 pass
@@ -61,7 +63,8 @@ def home(request):
         id,ta,tc = smf.get_amount(str(request.user))
         tl = ta-tc
         tl = round(tl,5)
-        return render(request, 'record/home.html', {'form': fm, 'dt': data ,'total_amount': ta,'amount_consumed':tc,'amount_left':tl})
+        tm = datetime.now()
+        return render(request, 'record/home.html', {'tim':tm,  'form': fm, 'dt': data ,'total_amount': ta,'amount_consumed':tc,'amount_left':tl})
     else:
         return HttpResponseRedirect("/login")
 
