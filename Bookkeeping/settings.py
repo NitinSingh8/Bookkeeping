@@ -24,9 +24,9 @@ SECRET_KEY = 'django-insecure-yi5+m6s-r*q+fbam0wr@nl!c7gq*mhq+zp20ykaj=&7nbvutsg
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["nitin-project1.herokuapp.com","localhost","*"]
+ALLOWED_HOSTS = ["nitin-bookkeeping.herokuapp.com","127.0.0.1"]
 
 
 # Application definition
