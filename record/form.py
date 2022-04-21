@@ -33,7 +33,7 @@ class RecordForm(forms.ModelForm):
                    'price': forms.NumberInput(attrs={'class': 'form-control w-50'}),
                    }
 
-        labels = {'shop': 'Location/shop', 'item': 'Description/item'}
+        labels = {'shop': 'Location/shop', 'item': 'Description/item','time':'Time(IST)'}
 
 
 class AmountSetUpForm(forms.Form):

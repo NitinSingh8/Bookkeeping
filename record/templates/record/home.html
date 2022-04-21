@@ -1,7 +1,7 @@
 {% extends 'record/base.html' %}
 {% block content0 %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'record/css/personal.css' %}">
+{% load static %}
+<link rel="stylesheet" href="{% static 'record/css/personal.css' %}">
 
 {% endblock %}
 {% block content1 %}
@@ -9,40 +9,46 @@
 
 
 
-    <div class="container border-2 my-5">
+<div class="container border-2 my-5">
 
-        <div class="row my-4">
-            <h2 class="text-center changefont"> Welcome {{ user }}</h2>
-        </div>
+    <div class="row my-4">
+        <h2 class="text-center changefont"> Welcome {{ user }}</h2>
+    </div>
 
-        <div class="row">
+    <div class="row">
         {% if messages %}
 
-            {% for message in messages %}
-                <div {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible fade show mb-4" {% endif %} role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-             {% endfor %}
-        {% endif %}
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible fade show mb-4" {% endif %}
+            role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        {% if total_amount == 0 %}
-            <div class="row bg-primary">
-                <h2>You didn't setup your amount. It showing 0.0, Quickly Setup Your amount by cliking <a style = "color: black" href="{% url 'set_amount' %}">here</a>.</h2>
-            </div>
+        {% endfor %}
         {% endif %}
-        <div class="border_self row bg-secondary get_m10 border-2">
-            <div class="col-sm-1 my-4"></div>
-            <div class="col-sm-8 text-start my-4">
-                <h2>Total Amount You were having : {{ total_amount }}</h2>
-                <br>
-                <h2>Amount consumed &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ amount_consumed }}</h2>
-                <br>
-                <h2>Amount Left &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ amount_left }}</h2>
+    </div>
+    {% if total_amount == 0 %}
+    <div class="row bg-primary">
+        <h2>You didn't setup your amount. It showing 0.0, Quickly Setup Your amount by cliking <a style="color: black"
+                href="{% url 'set_amount' %}">here</a>.</h2>
+    </div>
+    {% endif %}
+    <div class="border_self row bg-secondary get_m10 border-2">
+        <div class="col-sm-1 my-4"></div>
+        <div class="col-sm-8 text-start my-4">
+            <h2>Total Amount You were having : {{ total_amount }}</h2>
+            <br>
+            <h2>Amount consumed
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                {{ amount_consumed }}</h2>
+            <br>
+            <h2>Amount Left
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                {{ amount_left }}</h2>
 
-            </div>
-            <div class="col-sm-3 my-4">
-                <div class="d-sm-inline-block">
+        </div>
+        <div class="col-sm-3 my-4">
+            <div class="d-sm-inline-block">
                 <form action="{% url 'modify_amount' 1 %}" method="post">
                     {% csrf_token %}
                     <input type="submit" value="Modify" class="btn btn-danger m-4">
@@ -51,97 +57,86 @@
                     {% csrf_token %}
                     <input type="submit" value="Reset" class="btn btn-danger m-4">
                 </form>
-                </div>
             </div>
-
         </div>
+
     </div>
+</div>
 
-    <div class="border_self bg-primary container my-5">
+<div class="border_self bg-primary container my-5">
 
-        <div class="row bg-secondary get_m10">
-            <div class="col-sm-3 my-4"></div>
-            <div class="col-sm-6 text-start my-4">
-                 <h2 >Add New Record</h2> <br>
-                <form action="" method="post" novalidate >
-                    {% csrf_token %}
-                    <label for="id_time">Time:</label>
-                        <input type="text" name="time"  value= " {{ tim }}" class="form-control w-50" required id="id_time">
+    <div class="row bg-secondary get_m10">
+        <div class="col-sm-3 my-4"></div>
+        <div class="col-sm-6 text-start my-4">
+            <h2>Add New Record</h2> <br>
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                {% for field in form %}
+                        {% if  field.initial %}
+                            {{ field.label_tag }}
 
-                    <small class="text-warning"></small>
+                            <input type="{{ field.widget_type }}" name="time" value="{{ tim}}" class="form-control w-50" required id="{{ field.id_for_label }}">
+                            <small class="text-warning">{{ field.errors|striptags }}</small>
+                        {% else %}
+                            {{ field.label_tag }}
+                            {{ field }}
+                    <small class="text-warning">{{ field.errors|striptags }}</small>
+                        {% endif %}
                         <br> <br>
+                    {% endfor %}
+
+                <input type="submit" value="Add" class="btn btn-success">
+            </form>
+        </div>
+        <div class="col-sm-3 my-4"></div>
+
+    </div>
+</div>
 
 
-                        <label for="id_shop">Location/shop:</label>
-                        <input type="text" name="shop" class="form-control w-50" required id="id_shop">
-
-                    <small class="text-warning"></small>
-                        <br> <br>
 
 
-                        <label for="id_item">Description/item:</label>
-                        <input type="text" name="item" class="form-control w-50" required id="id_item">
-
-                    <small class="text-warning"></small>
-                        <br> <br>
 
 
-                        <label for="id_price">Price:</label>
-                        <input type="number" name="price" class="form-control w-50" step="any" required id="id_price">
 
-                    <small class="text-warning"></small>
-                        <br> <br>
 
-                    <input type="submit" value="Add" class="btn btn-success">
-                </form>
+
+<div class="border_self bg-primary container my-5">
+
+    <div class="row bg-secondary get_m10">
+        <div class="col-sm-12 text-start my-4">
+            <div class="row">
+                <h2 class="text-center">History of Records</h2>
             </div>
-            <div class="col-sm-3 my-4"></div>
-
-        </div>
-    </div>
-
-
-
-
-
-
-
-
-
-    <div class="border_self bg-primary container my-5">
-
-        <div class="row bg-secondary get_m10">
-            <div class="col-sm-12 text-start my-4">
-                 <div class="row"><h2 class="text-center">History of Records</h2></div>
-                <table class="table color-white">
-                  <thead>
+            <table class="table color-white">
+                <thead>
                     <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Description/item</th>
-                      <th scope="col">shop/Location</th>
-                      <th scope="col">price</th>
-                      <th scope="col">time</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Description/item</th>
+                        <th scope="col">shop/Location</th>
+                        <th scope="col">price</th>
+                        <th scope="col">time</th>
                     </tr>
-                  </thead>
-                  <tbody>
-                  {% for field in dt %}
+                </thead>
+                <tbody>
+                    {% for field in dt %}
                     <tr>
-                      <th scope="row">{{ field.0 }}</th>
-                      <td>{{ field.3 }}</td>
-                      <td>{{ field.2 }}</td>
-                      <td>{{ field.4 }}</td>
-                      <td>{{ field.1 }}</td>
+                        <th scope="row">{{ field.0 }}</th>
+                        <td>{{ field.3 }}</td>
+                        <td>{{ field.2 }}</td>
+                        <td>{{ field.4 }}</td>
+                        <td>{{ field.1 }}</td>
                     </tr>
-                  {% endfor %}
+                    {% endfor %}
 
 
-                  </tbody>
-                </table>
-            </div>
-
-
+                </tbody>
+            </table>
         </div>
+
+
     </div>
+</div>
 
 
 {% endblock %}

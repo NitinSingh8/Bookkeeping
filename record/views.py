@@ -6,7 +6,7 @@ from django.contrib import messages
 from .models import OurRecord
 from . import selfmadeform as smf
 from datetime import datetime
-
+from zoneinfo import ZoneInfo
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 fake_mail = ['nitin@gmail.com', 'nitin1@gmail.com','nitin2@gmail.com','dipendra@gmail.com','dipendra2gmail.com','dipendra2@gmail.com','unknownone@gmail.com','unknowntwo@gmail.com']
@@ -49,7 +49,7 @@ def home(request):
 
                     smf.update_amount(str(request.user),ta,tc)
                     messages.success(request,"Added an record successfully")
-                    tm = datetime.now()
+                    tm = datetime.now(tz=ZoneInfo('Asia/Kolkata')).strftime("%Y-%m-%d %H:%M:%S")
                     return render(request, 'record/home.html', { 'tim':tm,  'form': fm, 'dt': data ,'total_amount': ta,'amount_consumed':tc,'amount_left':tl})
             else:
                 print("not valid data")
@@ -63,7 +63,7 @@ def home(request):
         id,ta,tc = smf.get_amount(str(request.user))
         tl = ta-tc
         tl = round(tl,5)
-        tm = datetime.now()
+        tm = datetime.now(tz=ZoneInfo('Asia/Kolkata')).strftime("%Y-%m-%d %H:%M:%S")
         return render(request, 'record/home.html', {'tim':tm,  'form': fm, 'dt': data ,'total_amount': ta,'amount_consumed':tc,'amount_left':tl})
     else:
         return HttpResponseRedirect("/login")
